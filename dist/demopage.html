@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<noscript>
+		<meta http-equiv="refresh"
+			content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+	</noscript>
+
+	<title>Scania.com UK Chatbot</title>
+	<script
+		src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+
+	<script src="https://static.scania.com/vendors/frameworks/jQuery/2.2.2/jquery.min.js"></script>
+	<script src="https://static.scania.com/build/global/3.5.3/js/corporate-ui.js"></script>
+	<style type="text/css">
+		.data-v-e7b63ee8 header__img {
+			background-image: url("https://www.scania.com/content/dam/scanianoe/market/master/homepage/scania-symbol.svg") !important;
+		}
+	</style>
+
+</head>
+
+<body class="scania">
+
+	<c-corporate-header site-name="" site-url="/corporate-ui-docs/">
+
+	</c-corporate-header>
+
+	<c-main-content>
+
+		<section>
+
+			<link rel="import" href="https://static.scania.com/build/global/3.2.1-CF/components/teaser/teaser.html">
+			<c-teaser variation="1" headline="Scania.com UK Demo Bot"
+				description="Personalized AI-powered chatbot support">
+				<teaser-item headline="" image="https://hr-tiva.s3-eu-west-1.amazonaws.com/19357-004.jpg">
+
+				</teaser-item>
+				<teaser-item headline="Scania.com UK Demo Bot">
+
+				</teaser-item>
+			</c-teaser>
+		</section>
+		<!-- Teneo Web Chat start -->
+		<div id="teneo-web-chat"></div>
+		<script src="teneo-web-chat.js"></script>
+		<script>
+			function startHandler(payload) {
+				console.log(payload);
+				payload.handledState.handled = true;
+				let storedSessionMessages = JSON.parse(window.sessionStorage.getItem('teneo-web-chat-messages'));
+				if (storedSessionMessages === null || storedSessionMessages.length === 0) {
+					let message = {
+						"author": "bot",
+						"type": "combo",
+						"data": {
+							"components": [
+											{
+												"type": "card",
+												"title": "Welcome To Scania Great Britain!",
+												"image": {
+													"image_url": "https://www.scania.com/content/www/uk/en/home/products/trucks/_jcr_content/image.img.90.600.jpeg/1622041230005.jpeg",
+													"alt": "Scania UK"
+												},
+												
+												"text": "I can support you with some questions about our products, services or other activities within Scania. For example: <ul><li><a href= 'https://www.scania.com/uk/en/home/admin/misc/dealer/contact-locator.html' target='_blank'>Dealer Locator </a></li><li><a href= 'https://www.scania.com/uk/en/home/contact-us.html' target='_blank'>Contact us </a></li><li><a href= 'https://configurator.scania.com/go/?etel_market=5134&etel_language=5509' target='_blank'>Configure Your Truck </a></li></ul>"
+											},
+											{
+												"type": "text",
+												"text": "If you do not know where to start the conservastion , you can ask me :"
+											},
+											{
+												"type": "clickablelist",
+												"list_items": [
+													{
+														"title": "What can you do?",
+														"postback": "What can you do?"
+													}
+												]
+											}
+										]
+						}
+					}
+					TeneoWebChat.call('add_message', message);
+				}
+				TeneoWebChat.call('maximize');
+			}
+
+			function setupHoverCallout() {
+				var startBtn = document.getElementById('twc-launchbutton');
+				startBtn.addEventListener('mouseenter', function () {
+						TeneoWebChat.call('show_callout', 'How may I assist you?')
+					}
+				)
+
+				startBtn.addEventListener('mouseleave', function () {
+						TeneoWebChat.call('hide_callout')
+					}
+				)
+
+    		}
+			window.onload = function () {
+				if (
+					window.TeneoWebChat &&
+					typeof window.TeneoWebChat.initialize === 'function'
+				) {
+					var element = document.getElementById('teneo-web-chat');
+					const teneoProps = {
+						'teneoEngineUrl': 'https://datamanager.caas-dev.prod.aws.scania.com/crp-solution1/',
+						'title': 'Vera',
+						'titleIconUrl': 'https://uk-scaniacom-dev.s3.eu-west-1.amazonaws.com/Resources/Chatbot_32.svg',
+						'showCloseButton': true,
+						'autoRedirect': true,
+						'launchIconUrl': 'https://uk-scaniacom-dev.s3.eu-west-1.amazonaws.com/Resources/chat-launchbutton-icon.png',
+						'minimizeIconUrl': 'https://uk-scaniacom-dev.s3.eu-west-1.amazonaws.com/Resources/window-minimize.png',
+						'closeIconUrl': 'https://uk-scaniacom-dev.s3.eu-west-1.amazonaws.com/Resources/window-close.png'
+
+					};
+					TeneoWebChat.on('open_button_clicked', startHandler);		
+		
+					window.TeneoWebChat.initialize(element, teneoProps);
+					
+				}
+			};
+			window.TeneoWebChat.on('ready', setupHoverCallout);		
+		</script>
+		<!-- Teneo Web Chat end -->
+</body>
+
+</html>
