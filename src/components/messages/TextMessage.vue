@@ -144,7 +144,7 @@ _:-ms-fullscreen, :root .twc-message.twc-user .twc-text-message-wrapper  {
   Line-height:20px;
   font-weight:Normal;
   letter-spacing: -0.01em;
-  color: black;
+  color: white;
   opacity:87%;
   text-align: left;
   /*Qiqi -update end*/
