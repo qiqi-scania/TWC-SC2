@@ -129,8 +129,8 @@ _:-ms-fullscreen, :root .twc-message.twc-user .twc-text-message-wrapper  {
 }
 
 .twc-message.twc-user .twc-text-message {
-  /*Qiqi -update primary color*/
-  background: var(--user-message-bg-color, #041e42);
+  /*Qiqi -update background to*/
+  background: var(--user-message-bg-color, #E7E9EE);
   color: var(--user-message-fg-color, #ffffff);
   word-wrap: break-word;
   border-bottom-right-radius: 0px;
@@ -144,7 +144,7 @@ _:-ms-fullscreen, :root .twc-message.twc-user .twc-text-message-wrapper  {
   Line-height:20px;
   font-weight:Normal;
   letter-spacing: -0.01em;
-  color: white;
+  color: black;
   opacity:87%;
   text-align: left;
   /*Qiqi -update end*/
