@@ -311,7 +311,7 @@ export default {
   --agent-message-fg-color: var(--light-fg-color);
   --agent-message-bg-color: #47b2fd;
   --user-message-fg-color: var(--light-fg-color);
-  --user-message-bg-color: var(--primary-color);
+  --user-message-bg-color: #E7E9EE;
   --bot-typing-indicator-fg-color: var(--secondary-color);
   --bot-typing-indicator-bg-color: var(--bot-message-bg-color);
   --agent-typing-indicator-fg-color: var(--agent-message-fg-color);
